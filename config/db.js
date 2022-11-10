@@ -1,6 +1,6 @@
 const { Sequelize } = require('sequelize');
 
-sequelize = new Sequelize({
+const sequelize = new Sequelize({
     database: "bedu-fase3-g9-backend_school",
     username: "288480",
     password: "4_Q<M)DiRo3S",
@@ -14,5 +14,14 @@ sequelize = new Sequelize({
         }
     },
 });
+
+const studentModel = require('../models/students');
+
+const models = [studentModel];
+
+for(let model of models)
+    model(sequelize);
+
+const {students} = sequelize.models;
 
 module.exports = sequelize;
