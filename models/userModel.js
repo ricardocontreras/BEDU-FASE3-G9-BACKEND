@@ -1,14 +1,15 @@
 'use strict';
 
-const { DataTypes } = require('sequelize');
+const { Sequelize, DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-  const students = sequelize.define('students', {
-    idStudent: {
+  const users = sequelize.define('users', {
+    idUser: {
       type: DataTypes.UUID,
-      defaultValue: sequelize.UUIDV4,
+      defaultValue: Sequelize.UUIDV4,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     firstName: {
       type: DataTypes.STRING
@@ -25,8 +26,9 @@ module.exports = (sequelize) => {
     address: {
       type: DataTypes.STRING
     },
-    tutor: {
-      type: DataTypes.STRING
+    active: {
+      type: DataTypes.STRING,
+      defaultValue: true
     },
     createdAt: {
       allowNull: false,
@@ -38,7 +40,7 @@ module.exports = (sequelize) => {
     }
   }, {
     sequelize,
-    modelName: 'students',
+    modelName: 'users',
   });
-  return students;
+  return users;
 };

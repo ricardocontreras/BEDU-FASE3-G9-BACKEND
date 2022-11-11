@@ -4,8 +4,8 @@
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('students', {
-      idStudent: {
+    await queryInterface.createTable('users', {
+      idUser: {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
         allowNull: false,
@@ -23,10 +23,11 @@ module.exports = {
       dateOfBirth: {
         type: Sequelize.DATE
       },
-      address: {
-        type: Sequelize.STRING
+      active: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: true
       },
-      tutor: {
+      address: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -40,6 +41,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('students');
+    await queryInterface.dropTable('users');
   }
 };
