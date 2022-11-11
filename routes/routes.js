@@ -1,7 +1,9 @@
 const router = require('express').Router();
 
 router.get('/', (req, res)=>{
-    res.send('<h1>Welcome to school API</h1>');
+    res.redirect('../swagger');
 });
+
+router.use('/Users', require('./userRoute'));
 
 module.exports = router
