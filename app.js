@@ -1,4 +1,4 @@
-require('dotenv').config();
+const config = require('./config/settings');
 
 const express = require('express');
 const app = express();
@@ -22,7 +22,7 @@ app.get('/swagger.json', function (request, response) {
 app.use('/swagger', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 app.use('/api', require('./routes/routes'))
 
-const PORT = process.env.PORT || 4001;
+const PORT = process.env.PORT || config.PORT;
 app.listen(PORT, () => {
     console.info(`server is listening on port ${PORT}`);
 });
