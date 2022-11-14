@@ -1,5 +1,10 @@
 const config = require('./settings');
 const { Sequelize } = require('sequelize');
+const attendanceModel = require('../models/AttendanceModel');
+const credentialModel = require('../models/CredentialsModel');
+const employeeModel = require('../models/EmployeesModel');
+const roleModel = require('../models/RolesModel');
+const studentModel = require('../models/StudentsModel');
 
 const sequelize = new Sequelize({
     database: config.DB_NAME,
@@ -16,14 +21,11 @@ const sequelize = new Sequelize({
     },
 });
 
-const userModel = require('../models/userModel');
+const models = [studentModel, employeeModel, roleModel, attendanceModel, credentialModel];
 
-const models = [userModel];
-
-for(let model of models)
+for(let model of models){
     model(sequelize);
-
-const {users} = sequelize.models;
+}
 
 try {
     sequelize.authenticate();
