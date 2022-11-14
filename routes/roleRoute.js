@@ -1,5 +1,5 @@
 const route = require('express').Router()
-const {createUser, getUser, getUsers} = require('../controllers/userController');
+const {createRole, getRole, getAllRoles} = require('../controllers/roleController');
 
 /**
  * @swagger
@@ -28,9 +28,9 @@ const {createUser, getUser, getUsers} = require('../controllers/userController')
  *        description: User information.
  *        type: HTTP Code
  */
-route.post('/', createUser);
+route.post('/', createRole);
 
-route.get('/:idUser', getUser);
-route.get('/', getUsers);
+route.get('/:idRole', getRole);
+route.get('/', getAllRoles);
 
 module.exports = route;

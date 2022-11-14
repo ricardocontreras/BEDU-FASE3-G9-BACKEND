@@ -1,11 +1,10 @@
-'use strict';
-const { DataTypes, Sequelize } = require('sequelize');
+const { Sequelize, DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-  const Employee = sequelize.define('Employees', {
-    employeeId: {
-      type: DataTypes.INTEGER,
-      defaultValue: DataTypes.INTEGER,
+  const Student = sequelize.define('Students', {
+    studentId: {
+      type: DataTypes.DOUBLE,
+      defaultValue: DataTypes.DOUBLE,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
@@ -16,7 +15,7 @@ module.exports = (sequelize) => {
     },
     secondName:{
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: false
     },
     paternalSurname: {
       type: DataTypes.STRING,
@@ -42,13 +41,6 @@ module.exports = (sequelize) => {
       type: DataTypes.BOOLEAN,
       defaultValue: true
     },
-    role:{
-      type: DataTypes.INTEGER,
-      references:{
-        model: 'Roles',
-        key: 'roleId'
-      }
-    },
     createdAt: {
       allowNull: false,
       type: DataTypes.DATE
@@ -57,6 +49,16 @@ module.exports = (sequelize) => {
       allowNull: false,
       type: DataTypes.DATE
     }
+  }, {
+    hooks: {
+      beforeCreate: function (student) {
+        student.createdAt = new Date();
+        student.updatedAt = new Date();
+      },
+      beforeUpdate: function (student) {
+        student.updatedAt = new Date();
+      },
+    }
   });
-  return Employee;
+  return Student;
 };
