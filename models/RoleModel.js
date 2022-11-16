@@ -4,14 +4,18 @@ module.exports = (sequelize) => {
   const Roles = sequelize.define('Roles', {
     roleId: {
       type: DataTypes.INTEGER,
-      defaultValue: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
     description: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      unique: true
+    },
+    isActive: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true
     },
     createdAt: {
       allowNull: false,
