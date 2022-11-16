@@ -1,14 +1,14 @@
 const route = require('express').Router()
-const {createEmployee, getEmployee, getAllEmployees, createEmployeeCredentials} = require('../controllers/employeeController');
+const {createGroup, getAllGroups} = require('../controllers/groupController');
 
 /**
  * @swagger
- * /api/Users:
+ * /api/Roles:
  *  post:
  *    tags:
- *      - Users
- *    summary: Create user.
- *    description: Creates a new user.
+ *      - Roles
+ *    summary: Create new Role.
+ *    description: Creates a new Roles.
  *    requestBody:
  *      required: true
  *      content:
@@ -28,10 +28,7 @@ const {createEmployee, getEmployee, getAllEmployees, createEmployeeCredentials} 
  *        description: User information.
  *        type: HTTP Code
  */
-route.post('/', createEmployee);
-route.post('/creds', createEmployeeCredentials);
-
-route.get('/:idEmployee', getEmployee);
-route.get('/', getAllEmployees);
+route.post('/', createGroup);
+route.get('/', getAllGroups);
 
 module.exports = route;
