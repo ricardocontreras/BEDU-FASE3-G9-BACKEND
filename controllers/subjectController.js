@@ -1,9 +1,9 @@
 const sequelize = require('../config/db');
 
-async function createRole(req, res) {
+async function createSubject(req, res) {
   try {
     const body = req.body;
-    await sequelize.models.Roles.create(body)
+    await sequelize.models.Subjects.create(body)
       .then(data => res.status(201).json(data))
       .catch(err =>
         res.status(400).json({
@@ -13,25 +13,25 @@ async function createRole(req, res) {
   } catch (err) {
     console.error('An exception has been thrown: ' + err.message);
     return res.status(500).json({
-      error: err.message
+      error: "A problem has ocurred please try again or contact your administrator."
     })
   }
 };
 
-async function getRole(req, res) {
+async function getSubject(req, res) {
   try {
-    const roleId = req.params.roleId;
+    const {subjectId} = req.params;
 
-    await sequelize.models.Roles.findOne({
+    await sequelize.models.Subjects.findOne({
       where: {
-        roleId: roleId
+        subjectId: subjectId
       }
     })
     .then(data => res.status(200).json(data))
     .catch (err => {
-      if (roleId == null) {
+      if (subjectId == null) {
         res.status(404).json({ error: err.message });
-      } else if (!Number.isInteger(parseInt(roleId))) {
+      } else if (!Number.isInteger(parseInt(subjectId))) {
         res.status(400).json({ error: err.message });
       }
       throw new Error('An exception has been thrown: ' + err.message);
@@ -39,14 +39,14 @@ async function getRole(req, res) {
   } catch (err) {
     console.error('An exception has been thrown: ' + err.message);
     return res.status(500).json({
-      error: err.message
+      error: "A problem has ocurred please try again or contact your administrator."
     })
   }
 };
 
-async function getAllRoles(req, res) {
+async function getAllSubjects(req, res) {
   try {
-    const roles = await sequelize.models.Roles.findAll();
+    const roles = await sequelize.models.Subjects.findAll();
     if (roles.length <= 0) {
       res.status(204).json([]);
     } else {
@@ -58,7 +58,7 @@ async function getAllRoles(req, res) {
 };
 
 module.exports = {
-  createRole,
-  getRole,
-  getAllRoles
+  createSubject,
+  getSubject,
+  getAllSubjects
 };

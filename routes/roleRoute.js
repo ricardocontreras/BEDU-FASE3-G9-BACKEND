@@ -3,12 +3,12 @@ const {createRole, getRole, getAllRoles} = require('../controllers/roleControlle
 
 /**
  * @swagger
- * /api/Users:
+ * /api/Roles:
  *  post:
  *    tags:
- *      - Users
- *    summary: Create user.
- *    description: Creates a new user.
+ *      - Roles
+ *    summary: Create new Role.
+ *    description: Creates a new Roles.
  *    requestBody:
  *      required: true
  *      content:
@@ -30,7 +30,7 @@ const {createRole, getRole, getAllRoles} = require('../controllers/roleControlle
  */
 route.post('/', createRole);
 
-route.get('/:idRole', getRole);
+route.get('/:roleId', getRole);
 route.get('/', getAllRoles);
 
 module.exports = route;

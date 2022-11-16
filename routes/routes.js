@@ -7,5 +7,7 @@ router.get('/', (req, res)=>{
 router.use('/students', require('./studentRoute'));
 router.use('/roles', require('./roleRoute'));
 router.use('/employees', require('./employeeRoute'));
+router.use('/subjects', require('./subjectRoute'));
+router.use('/groups', require('./groupRoute'));
 
 module.exports = router

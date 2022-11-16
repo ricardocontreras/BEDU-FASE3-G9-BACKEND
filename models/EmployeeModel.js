@@ -14,7 +14,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    secondName:{
+    secondName: {
       type: DataTypes.STRING,
       allowNull: true
     },
@@ -42,9 +42,9 @@ module.exports = (sequelize) => {
       type: DataTypes.BOOLEAN,
       defaultValue: true
     },
-    role:{
+    role: {
       type: DataTypes.INTEGER,
-      references:{
+      references: {
         model: 'Roles',
         key: 'roleId'
       }
@@ -56,6 +56,16 @@ module.exports = (sequelize) => {
     updatedAt: {
       allowNull: false,
       type: DataTypes.DATE
+    }
+  }, {
+    hooks: {
+      beforeCreate: function (employee) {
+        employee.createdAt = new Date();
+        employee.updatedAt = new Date();
+      },
+      beforeUpdate: function (employee) {
+        employee.updatedAt = new Date();
+      },
     }
   });
   return Employee;
