@@ -1,5 +1,5 @@
 const route = require('express').Router()
-const {createStudent, getStudent, getAllStudents} = require('../controllers/studentController');
+const {createStudent, getStudent, getAllStudents, assignGroupToStudent} = require('../controllers/studentController');
 
 /**
  * @swagger
@@ -29,6 +29,7 @@ const {createStudent, getStudent, getAllStudents} = require('../controllers/stud
  *        type: HTTP Code
  */
 route.post('/', createStudent);
+route.post('/assign', assignGroupToStudent);
 
 route.get('/:idStudent', getStudent);
 route.get('/', getAllStudents);
