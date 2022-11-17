@@ -314,6 +314,72 @@ route.get('/:employeeId', getEmployee);
  */
 route.get('/', getAllEmployees);
 
+/**
+ * @swagger
+ * /api/Employees/Credentials:
+ *  post:
+ *    tags:
+ *      - Employees
+ *    summary: Create credentials of Employees.
+ *    description: With this method, we create credentials of Employees.
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *              type: object
+ *              properties:
+ *                  employeeId:
+ *                      type: int
+ *                      description: Id of the employee
+ *                      example: Juan
+ *                  email:
+ *                      type: string
+ *                      description: Employee's email
+ *                      example: test@test.com
+ *                  password:
+ *                      type: string
+ *                      description: Employee's password
+ *                      example: password
+ *    produces:
+ *      - application/json
+ *    responses:
+ *      201:
+ *          description: A object of Employees.
+ *          content:
+ *              application/json:
+ *                  schema:
+ *                      type: object
+ *                      properties:
+ *                          credentialId:
+ *                              type: int
+ *                              description: Id of the credentials
+ *                              example: 1
+ *                          employeeId:
+ *                              type: int
+ *                              description: Id of the employee
+ *                              example: 1
+ *                          email:
+ *                              type: string
+ *                              description: employee's email
+ *                              example: test@test.com
+ *                          password:
+ *                              type: string
+ *                              description: Employee's password
+ *                              example: password
+ *                          createdAt:
+ *                              type: date
+ *                              description: Credentials's start date
+ *                              example: 2022-11-16T04:16:45.457Z
+ *                          updatedAt:
+ *                              type: date
+ *                              description: Credentials's update date
+ *                              example: 2022-11-16T04:16:45.457Z
+ *      400:
+ *          description: Could not create Credentials correctly
+ *      500:
+ *          description: Credentials creation error
+ */
 route.post('/Credentials/', createEmployeeCredentials);
 
 module.exports = route;

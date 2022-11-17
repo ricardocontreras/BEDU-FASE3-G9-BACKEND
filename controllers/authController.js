@@ -15,13 +15,14 @@ async function loginUser(req, res) {
         }
 
         if (!user.validPassword(body.password)) {
-            console.log("Credentials " + user.employeeId);
             return res.status(401).json({ message: 'Invalid credentials' });
         }
 
         const token = jwt.sign({ employeeId: user.employeeId }, 'secretkey', {
-            expiresIn: 36000,
+            expiresIn: 360000,
         });
+
+        
 
         return res.json({
             message: 'Authenticated sucessfully',

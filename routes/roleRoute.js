@@ -1,5 +1,6 @@
 const route = require('express').Router()
 const {createRole, getRole, getAllRoles, updateRoles, deleteRoles} = require('../controllers/roleController');
+const permission = require('../middlewares/permission');
 
 /**
  * @swagger
@@ -51,7 +52,7 @@ route.post('/', createRole);
 
 /**
  * @swagger
- * /api/Roles:roleId:
+ * /api/Roles/:roleId:
  *  get:
  *    tags:
  *      - Roles
@@ -95,7 +96,7 @@ route.post('/', createRole);
  *      500:
  *          description: Role creation error
  */
-route.get('/:roleId', getRole);
+route.get('/:roleId', permission('Director'), getRole);
 
 /**
  * @swagger

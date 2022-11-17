@@ -1,5 +1,11 @@
 FROM node:16
 ENV NODE_ENV=production
+ENV DB_USER=288480
+ENV DB_PASSWORD=4_Q<M)DiRo3S
+ENV DB_NAME=bedu-fase3-g9-backend_school
+ENV DB_HOST=mysql-bedu-fase3-g9-backend.alwaysdata.net
+ENV DB_PORT=3306
+ENV DIALECT=mysql
 
 # Create app directory
 WORKDIR /usr/src/app

@@ -4,7 +4,6 @@ const sequelize = require('../config/db');
 async function createEmployee(req, res) {
   try {
     const body = req.body;
-    console.log("Body: " + body);
     await sequelize.models.Employees.create(body)
       .then(data => res.status(201).json(data))
       .catch(err =>

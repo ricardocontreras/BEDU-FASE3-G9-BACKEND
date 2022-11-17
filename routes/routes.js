@@ -6,10 +6,10 @@ router.get('/', (req, res)=>{
 });
 
 router.use('/auth', require('./authRoute'));
-router.use('/students', require('./studentRoute'));
+router.use('/students', authenticate, require('./studentRoute'));
 router.use('/roles', authenticate, require('./roleRoute'));
-router.use('/employees', require('./employeeRoute'));
-router.use('/subjects', require('./subjectRoute'));
-router.use('/groups', require('./groupRoute'));
+router.use('/employees', authenticate, require('./employeeRoute'));
+router.use('/subjects', authenticate, require('./subjectRoute'));
+router.use('/groups', authenticate, require('./groupRoute'));
 
 module.exports = router

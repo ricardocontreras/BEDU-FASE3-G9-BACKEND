@@ -3,7 +3,7 @@ const { loginUser } = require('../controllers/authController');
 
 /**
  * @swagger
- * /api/Auth:
+ * /api/Auth/Login:
  *  post:
  *    tags:
  *      - Auth

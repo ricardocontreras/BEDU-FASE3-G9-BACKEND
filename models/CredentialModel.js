@@ -36,7 +36,6 @@ module.exports = (sequelize) => {
   }, {
     hooks: {
       beforeCreate: (user) => {
-        console.log(user);
         const salt = bcrypt.genSaltSync();
         user.password = bcrypt.hashSync(user.password, salt);
       }
@@ -44,7 +43,7 @@ module.exports = (sequelize) => {
   });
 
   Credentials.prototype.validPassword = function (password) {
-    console.log("Credentials " + password);
+    //console.log(bcrypt.compareSync(password, this.password));
     return bcrypt.compareSync(password, this.password);
   }
 
