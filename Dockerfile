@@ -1,4 +1,4 @@
-FROM node:16
+FROM node:16.18.0
 ENV NODE_ENV=production
 ENV DB_USER=288480
 ENV DB_PASSWORD=4_Q<M)DiRo3S
@@ -15,9 +15,10 @@ WORKDIR /usr/src/app
 # where available (npm@5+)
 COPY package*.json ./
 
+RUN npm i bcrypt --unsafe-perm=true --allow-root --save
 RUN npm install
 # If you are building your code for production
-# RUN npm ci --only=production
+#RUN npm ci --only=production
 
 # Bundle app source
 COPY . .
