@@ -5,7 +5,6 @@ module.exports = (sequelize) => {
   const Employee = sequelize.define('Employees', {
     employeeId: {
       type: DataTypes.INTEGER,
-      defaultValue: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true

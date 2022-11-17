@@ -12,7 +12,15 @@ module.exports = {
         autoIncrement: true
       },
       letter: Sequelize.STRING,
-      grade: Sequelize.STRING
+      grade: Sequelize.STRING,
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      }
     });
   },
 

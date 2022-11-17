@@ -5,7 +5,6 @@ const { ConnectionError } = require('sequelize');
 async function createStudent(req, res) {
     try {
         const body = req.body;
-        console.log(body);
         const users = await sequelize.models.Students.create(body)
             .then(data => res.status(201).json(data))
             .catch(err => 
@@ -56,8 +55,25 @@ const getAllStudents = async(req, res) => {
     }
 };
 
+const assignGroupToStudent = async(req, res) => {
+  try{
+    const {body} = req;
+
+    await sequelize.models.StudentsGroup.create(body)
+    .then(data => res.status(201).json(data))
+    .catch(err => 
+        res.status(400).json({
+            error: err.message
+        })
+    );
+  }catch(err){
+    console.error({error: "A problem has ocurred please try again or contact your administrator."})
+  }
+}
+
 module.exports = {
     createStudent,
     getStudent,
-    getAllStudents
+    getAllStudents,
+    assignGroupToStudent
 };
