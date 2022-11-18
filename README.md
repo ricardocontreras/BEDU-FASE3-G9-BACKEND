@@ -54,5 +54,9 @@ or run project for production $ npm start
 ### Run Migration Database
 ##### Create tables
 ~>$ npx sequelize-cli db:migrate
+
+~>$ npx sequelize-cli db:seed:all
 ##### Delete tables
 ~>$ npx sequelize-cli db:migrate:undo
+
+~>$ npx sequelize-cli db:seed:all:undo

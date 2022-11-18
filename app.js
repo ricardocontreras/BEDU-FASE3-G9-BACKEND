@@ -1,12 +1,16 @@
 const express = require('express');
-const app = express();
-const bodyParser = require('body-parser');
+const helmet = require('helmet');
+const cors = require('cors');
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUI = require('swagger-ui-express');
 const swaggerDocs = swaggerJsDoc(require('./config/swagger'));
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+const app = express()
+
+app.use(helmet())
+app.use(cors())
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 app.get('/', function (request, response){
     response.redirect('/swagger');

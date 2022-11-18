@@ -3,6 +3,12 @@ const bcrypt = require('bcrypt');
 
 module.exports = (sequelize) => {
   const Credentials = sequelize.define('Credentials', {
+    credentialId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true
+    },
     employeeId:{
       type: DataTypes.INTEGER,
       references:{
@@ -18,18 +24,26 @@ module.exports = (sequelize) => {
       }
     },
     password: DataTypes.STRING,
-    token: DataTypes.STRING
+    token: DataTypes.STRING,
+    createdAt: {
+      allowNull: false,
+      type: DataTypes.DATE
+    },
+    updatedAt: {
+      allowNull: false,
+      type: DataTypes.DATE
+    }
   }, {
     hooks: {
-      beforeCreate: (employee) => {
-        const salt = bcrypt.genSaltSync()
-        employee.password = bcrypt.hashSync(employee.password, salt)
+      beforeCreate: (user) => {
+        const salt = bcrypt.genSaltSync();
+        user.password = bcrypt.hashSync(user.password, salt);
       }
     }
   });
 
-  Credentials.prototype.validPassword = (pass) => {
-    return bcrypt.compareSync(pass, this.password);
+  Credentials.prototype.validPassword = function (password) {
+    return bcrypt.compareSync(password, this.password);
   }
 
   return Credentials;
