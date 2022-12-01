@@ -1,5 +1,5 @@
 # BEDU-FASE3-G9-BACKEND
-This is the repository for the second project of the BEDU Phase 2: Backend Fundamentals
+This is the repository for the first project of the BEDU Phase 3: Backend 
 
 API: https://bedu-fase3-g9-backend.herokuapp.com/
 

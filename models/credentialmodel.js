@@ -1,4 +1,8 @@
 'use strict';
+
+const bcrypt = require('bcrypt');
+const { DataTypes } = require('sequelize');
+
 const {
   Model
 } = require('sequelize');
@@ -14,7 +18,15 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   CredentialModel.init({
-    email: DataTypes.STRING
+    email: DataTypes.STRING,
+    password: DataTypes.STRING
+  }, {
+    hooks: {
+      beforeCreate: (credential) => {
+        const salt = bcrypt.genSaltSync()
+        credential.password = bcrypt.hashSync(credential.password, salt)
+      }
+    }
   }, {
     sequelize,
     modelName: 'CredentialModel',

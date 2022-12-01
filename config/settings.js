@@ -1,7 +1,7 @@
 require('dotenv').config();
 let settings = {};
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'development') {
     settings = {
         PORT: 3000,
         DB_NAME: "bedu-fase3-g9-backend_school",
